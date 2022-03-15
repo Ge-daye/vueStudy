@@ -1,6 +1,11 @@
 <template>
   <ul class="todo-main">
-    <MyItem v-for="todoObj in todos" :todoObj="todoObj" :key="todoObj.id"></MyItem>
+<!--    <h3><button @click="changeTodo">点击查看todos数据</button></h3>-->
+    <MyItem v-for="todoObj in todos"
+            :todoObj="todoObj"
+            :key="todoObj.id"
+            :checkTodo="checkTodo">
+    </MyItem>
   </ul>
 </template>
 
@@ -9,7 +14,16 @@ import MyItem from "./MyItem";
 export default {
   name: "MyLists",
   components: {MyItem},
-  props:['todos']
+  props:['todos','checkTodo'],
+  methods:{
+    changeTodo(){
+      // this.todos.pop();
+      this.todos.forEach((todoObj)=>{
+        console.log(todoObj.title)
+        todoObj.done = true;
+      })
+    }
+  }
 }
 </script>
 
